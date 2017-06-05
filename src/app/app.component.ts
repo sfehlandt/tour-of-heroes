@@ -9,5 +9,5 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'Tour of Heroes';
   constructor() { }
-  ngOnInit() { }
+  ngOnInit() {  }
 }
