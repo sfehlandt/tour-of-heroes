@@ -34,6 +34,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         path: '',
         redirectTo: '/dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'detail/:id',
+        component: HeroDetailComponent
       }
     ])
   ],
