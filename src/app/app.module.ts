@@ -11,6 +11,9 @@ import { RouterModule } from  '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing/app-routing.module'
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module'
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]
