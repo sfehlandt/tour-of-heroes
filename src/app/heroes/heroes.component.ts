@@ -17,20 +17,39 @@ export class HeroesComponent implements OnInit {
     private router: Router,
     private heroService: HeroService) { }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {return; }
+    this.heroService.create(name)
+      .then(hero => {
+        this.heroes.push(hero);
+        this.selectedHero = null;
+      })
+  }
+
+  delete(hero: Hero): void {
+    this.heroService
+      .delete(hero.id)
+      .then(() => {
+        this.heroes = this.heroes.filter(h => h !== hero);
+        if (this.selectedHero === hero) { this.selectedHero = null;}
+      });
+  }
+
   getHeroes(): void {
     this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     //this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
   }
 
-  ngOnInit(): void {
-    this.getHeroes();
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedHero.id]);
   }
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
 
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+  ngOnInit(): void {
+    this.getHeroes();
   }
 }
